@@ -1,0 +1,35 @@
+name: Flask CI
+
+# Запуск при push и pull_request в ветки main/master
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  test:
+    # Используем последнюю версию Ubuntu
+    runs-on: ubuntu-latest
+
+    steps:
+    # Шаг 1: клонирование кода репозитория
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # Шаг 2: установка Python
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    # Шаг 3: установка зависимостей
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    # Шаг 4: запуск тестов с отчетом о покрытии
+    - name: Run tests with pytest
+      run: |
+        pytest --cov=app --cov-report=term-missing tests/

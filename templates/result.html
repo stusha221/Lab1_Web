@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Результат поворота{% endblock %}
+
+{% block content %}
+<h1>Изображение повёрнуто {{ direction_word }} на {{ '%g'|format(angle) }}°</h1>
+
+{% if stamp_text %}
+<p>На изображение нанесены дата и время: <b>{{ stamp_text }}</b></p>
+{% endif %}
+
+<div class="grid">
+  <div class="card">
+    <h2 style="margin-top:0">Исходное изображение</h2>
+    <img class="preview" src="{{ src_url }}" alt="Исходное изображение">
+    <div class="meta">Размер: {{ src_size }} px</div>
+  </div>
+  <div class="card">
+    <h2 style="margin-top:0">После поворота</h2>
+    <img class="preview" src="{{ res_url }}" alt="Повёрнутое изображение">
+    <div class="meta">
+      Повёрнуто {{ direction_word }} на {{ '%g'|format(angle) }}° ·
+      Размер: {{ res_size }} px
+    </div>
+  </div>
+</div>
+
+<h2>Распределение цветов — исходное изображение</h2>
+<img class="hist" src="{{ hist_src }}" alt="Гистограмма исходного изображения">
+
+<h2>Распределение цветов — полученное изображение</h2>
+<img class="hist" src="{{ hist_res }}" alt="Гистограмма повёрнутого изображения">
+
+<a class="back" href="{{ url_for('index') }}">← Загрузить другое изображение</a>
+{% endblock %}

@@ -1,0 +1,28 @@
+# Загруженные пользователем файлы
+static/uploads/*
+!static/uploads/.gitkeep
+
+# Виртуальное окружение
+venv/
+.venv/
+
+# Кэш Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+
+# Отчеты о тестах
+report.xml
+
+# Настройки IDE (PyCharm / IntelliJ)
+.idea/
+.vscode/
+*.iml
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
